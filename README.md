@@ -9,7 +9,7 @@ Pull policy image from registry.
 
 ### `tag`
 
-**Required** The image tag to be pulled from the registry. 
+**Required** The image tag to be pulled from the registry.
 
 Default: empty
 
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     name: build
     steps:
-    
+
     - uses: actions/checkout@v2
 
     - name: Policy Login
@@ -55,20 +55,20 @@ jobs:
 
     - name: Policy Build
       id: policy-build
-      uses: opcr-io/policy-build-action@v1
+      uses: opcr-io/policy-build-action@v2
       with:
         src: peoplefinder/src
-        tag: datadude/peoplefinder:$(sver -n patch) 
+        tag: datadude/peoplefinder:$(sver -n patch)
         revision: "$GITHUB_SHA"
 
     - name: Policy Push
       id: policy-push
-      uses: opcr-io/policy-push-action@v1
+      uses: opcr-io/policy-push-action@v2
       with:
         tag: datadude/peoplefinder:$(sver -n patch)
 
     - name: Policy Logout
       id: policy-logout
-      uses: opcr-io/policy-logout-action@v1
+      uses: opcr-io/policy-logout-action@v2
 
 ```
